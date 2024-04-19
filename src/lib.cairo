@@ -1,13 +1,6 @@
 use starknet::ContractAddress;
 use starknet::account::Call;
 
-// #[derive(Drop, Serde)]
-// struct Call{
-//     to : ContractAddress,
-//     selector : felt252,
-//     calldata : Array<felt252>
-// }
-
 #[starknet::interface]
 trait IAccount<T>{
     fn is_valid_signature(self : @T, hash : felt252, signature : Array<felt252>) -> felt252;
@@ -37,13 +30,8 @@ mod Account{
     use core::starknet::SyscallResultTrait;
 use starknet::get_caller_address;
     use starknet::syscalls::call_contract_syscall; // to fix in baretto docs
-    // use core::zeroable::Zeroable;
-    // use core::ArrayTrait;
-    use core::ecdsa::check_ecdsa_signature;
-    use core::box::BoxTrait;
-    // use array::ArrayTrait;
-    // use ecdsa::check_ecdsa_signature;
-    // use box::BoxTrait;
+    use core::ecdsa::check_ecdsa_signature; // to fix in baretto docs
+    use core::box::BoxTrait; // to fix in baretto docs
     use starknet::get_tx_info;
     use super::Call;
     use super::SUPPORTED_TX_VERSION;
